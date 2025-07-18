@@ -1,3 +1,4 @@
+import { memo } from "react";
 interface CellProps {
   value: string;
   displayValue: string;
@@ -7,35 +8,21 @@ interface CellProps {
   row: number;
   col: number;
 }
-
-function Cell({
+const Cell = memo(function Cell({
   value,
   displayValue,
   updateValue,
   selectCell,
   isSelected,
   row,
-  col,
+  col
 }: CellProps) {
   function handleClick(): void {
     selectCell(row, col);
     console.log("clicked", row, col);
   }
-
-  return (
-    <div onClick={handleClick} className="cell">
-      {isSelected ? (
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => updateValue(e.target.value, row, col)}
-          autoFocus
-        />
-      ) : (
-        <p>{displayValue}</p>
-      )}
-    </div>
-  );
-}
-
+  return <div onClick={handleClick} className="cell">
+      {isSelected ? <input type="text" value={value} onChange={e => updateValue(e.target.value, row, col)} autoFocus /> : <p>{displayValue}</p>}
+    </div>;
+});
 export default Cell;
