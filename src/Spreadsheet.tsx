@@ -7,7 +7,7 @@ function Spreadsheet() {
   // TODO decide on the data structure for the sheet
   const [cellValues, setCellValues] = useState<Record<string, string>>({});
   const [sheet, setSheet] = useState<string[][]>(() =>
-    new Array(20).fill(new Array(20).fill(""))
+    new Array(60).fill(new Array(60).fill(""))
   );
   const [selectedCell, setSelectedCell] = useState<CellLocation | null>(null);
 
